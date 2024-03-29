@@ -1,134 +1,317 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System;
+//1.
+//class Cross
+//{
+//    protected string _LastName;
+//    protected string _Group;
+//    protected int _score;
 
-abstract class Shape
+//    public Cross(string LastName, string Group, int score)
+//    {
+//        this._LastName = LastName;
+//        this._Group = Group;
+//        this._score = score;
+//    }
+//    public string LastName { get { return this._LastName; } }
+//    public string Group { get { return this._Group; } }
+//    public int score { get { return this._score; } }
+//    public void Print()
+//    {
+//        Console.WriteLine($"Name:{LastName} Group:{Group} Score:{score}");
+//    }
+//}
+
+//abstract class Winers
+//{
+//    public abstract void Winer(Cross[] array);
+//}
+//class Run100 : Winers
+//{
+//    public override void Winer(Cross[] array)
+//    {
+//        int res = 0;
+//        for (int i = 1; i < array.Length; i++)
+//        {
+//            for (int j = 1; j < array.Length; j++)
+//            {
+//                if (array[j - 1].score < array[j].score)
+//                {
+//                    Cross p = array[j];
+//                    array[j] = array[j - 1];
+//                    array[j - 1] = p;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < array.Length; i++)
+//        {
+//            if (array[i].score >= 100)
+//            {
+//                res = i;
+//            }
+//        }
+//        Console.WriteLine("Race 100 meters");
+//        for (int i = 0; i <= res; i++)
+//        {
+//            Console.Write($"Place: {i + 1}\t\t");
+//            array[i].Print();
+//        }
+//    }
+//}
+//class Run500 : Winers
+//{
+//    public override void Winer(Cross[] array)
+//    {
+//        int res = 0;
+//        for (int i = 1; i < array.Length; i++)
+//        {
+//            for (int j = 1; j < array.Length; j++)
+//            {
+//                if (array[j - 1].score < array[j].score)
+//                {
+//                    Cross p = array[j];
+//                    array[j] = array[j - 1];
+//                    array[j - 1] = p;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < array.Length; i++)
+//        {
+//            if (array[i].score >= 500)
+//            {
+//                res = i;
+//            }
+//        }
+//        Console.WriteLine("Race 500 meters");
+//        for (int i = 0; i <= res; i++)
+//        {
+//            Console.Write($"Place: {i + 1}\t\t");
+//            array[i].Print();
+//        }
+//    }
+//}
+//internal class Program
+//{
+
+
+//    static void Main(string[] args)
+//    {
+//        Run100 r = new Run100();
+//        Cross[] ARRAY = new Cross[3];
+
+
+//        ARRAY[0] = new Cross("Sidney", "2", 521);
+//        ARRAY[1] = new Cross("Rosa", "1", 523);
+//        ARRAY[2] = new Cross("Adrian", "3", 128);
+//        Sort(ARRAY);
+//        Run100 array1 = new Run100();
+//        array1.Winer(ARRAY);
+//        Console.WriteLine();
+//        Run500 array2 = new Run500();
+//        array2.Winer(ARRAY);
+//    }
+//    static void Sort(Cross[] array)
+//    {
+//        for (int j = 0; j < array.Length - 1; j++)
+//        {
+//            for (int i = 1; i < array.Length; i++)
+//            {
+//                if (array[i - 1].score < array[i].score)
+//                {
+//                    Cross p = array[i - 1];
+//                    array[i - 1] = array[i];
+//                    array[i] = p;
+//                }
+//            }
+//        }
+//    }
+//}
+
+
+
+
+// 2
+//public abstract class Discipline
+//{
+//    public string DisciplineName { get; protected set; }
+
+//    public abstract void Print();
+//}
+
+//public class LongJump : Discipline
+//{
+//    public LongJump()
+//    {
+//        DisciplineName = "Long Jump";
+//    }
+
+//    public override void Print()
+//    {
+//        Console.WriteLine($"Discipline: {DisciplineName}");
+//    }
+//}
+
+//public class HighJump : Discipline
+//{
+//    public HighJump()
+//    {
+//        DisciplineName = "High Jump";
+//    }
+
+//    public override void Print()
+//    {
+//        Console.WriteLine($"Discipline: {DisciplineName}");
+//    }
+//}
+
+//public class Program
+//{
+//    public static void Main()
+//    {
+//        Discipline longJump = new LongJump();
+//        Discipline highJump = new HighJump();
+
+//        double[][] jumpResults = new double[][]
+//        {
+//            new double[] { 5.6, 5.9, 6.1 },
+//            new double[] { 5.8, 6.0, 6.2 },
+//            new double[] { 5.7, 6.0, 6.3 }
+//        };
+
+//        Console.WriteLine("Table of results:");
+
+//        longJump.Print();
+//        for (int i = 0; i < jumpResults.Length; i++)
+//        {
+//            double bestLongJump = FindBestResult(jumpResults[i]);
+//            Console.WriteLine($"Best long jump result for participant {i + 1}: {bestLongJump}");
+//        }
+
+//        highJump.Print();
+//        for (int i = 0; i < jumpResults.Length; i++)
+//        {
+//            double bestHighJump = FindBestResult(jumpResults[i]);
+//            Console.WriteLine($"Best high jump result for participant {i + 1}: {bestHighJump}");
+//        }
+//    }
+
+//    public static double FindBestResult(double[] results)
+//    {
+//        double bestResult = results[0];
+//        for (int i = 1; i < results.Length; i++)
+//        {
+//            if (results[i] > bestResult)
+//            {
+//                bestResult = results[i];
+//            }
+//        }
+//        return bestResult;
+//    }
+//}
+
+// 3
+public class FootballTeam
 {
-    public abstract double Area();
-    public abstract double Perimeter();
+    private string name;
+    private int scored;
+    private int conceded;
+    private int points;
+
+    public FootballTeam(string name)
+    {
+        this.name = name;
+        scored = 0;
+        conceded = 0;
+        points = 0;
+    }
+
+    public string Name { get { return name; } set { name = value; } }
+
+    public void Result(int scored, int conceded)
+    {
+        this.scored += scored;
+        this.conceded += conceded;
+        if (scored > conceded)
+            points += 3;
+        else if (scored == conceded)
+            points += 1;
+    }
+
+    public int Points { get { return points; } }
+
+    public int Difference { get { return scored - conceded; } }
+
+    public static void Print(FootballTeam[] teams)
+    {
+        Console.WriteLine("Place | Team     | Points");
+        for (int i = 0; i < teams.Length; i++)
+        {
+            Console.WriteLine("{0,-6} | {1,-8} | {2}", i + 1, teams[i].Name, teams[i].Points);
+        }
+    }
 }
 
-class Round : Shape
+public class WomenFootballTeam : FootballTeam
 {
-    private double Radius;
-
-    public Round(double radius)
+    public WomenFootballTeam(string name) : base(name)
     {
-        Radius = radius;
-    }
-
-    public override double Area()
-    {
-        return Math.PI * Math.Pow(Radius, 2);
-    }
-
-    public override double Perimeter()
-    {
-        return 2 * Math.PI * Radius;
     }
 }
 
-class Square : Shape
+public class MenFootballTeam : FootballTeam
 {
-    private double Side;
-
-    public Square(double side)
+    public MenFootballTeam(string name) : base(name)
     {
-        Side = side;
-    }
-
-    public override double Area()
-    {
-        return Math.Pow(Side, 2);
-    }
-
-    public override double Perimeter()
-    {
-        return 4 * Side;
-    }
-}
-
-class Triangle : Shape
-{
-    private double A;
-    private double B;
-    private double C;
-
-    public Triangle(double a, double b, double c)
-    {
-        A = a;
-        B = b;
-        C = c;
-    }
-
-    public override double Area()
-    {
-        double p = (A + B + C) / 2;
-        return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
-    }
-
-    public override double Perimeter()
-    {
-        return A + B + C;
     }
 }
 
 class Program
 {
-    static void Info(Shape shape)
+    static void Main(string[] args)
     {
-        Console.WriteLine($"{shape.GetType().Name}\t{shape.Perimeter()}\t\t{shape.Area()}");
+        FootballTeam[] teams = new FootballTeam[]
+        {
+            new WomenFootballTeam("CSKA Women"),
+            new WomenFootballTeam("Zenit Women"),
+            new MenFootballTeam("Dynamo Men"),
+            new MenFootballTeam("Spartak Men")
+        };
+
+        Match(ref teams[0], ref teams[1]);
+        Match(ref teams[0], ref teams[2]);
+        Match(ref teams[1], ref teams[0]);
+        Match(ref teams[1], ref teams[2]);
+
+        Sort(teams);
+        FootballTeam.Print(teams);
     }
 
-    static void Main()
+    static void Match(ref FootballTeam team1, ref FootballTeam team2)
     {
-        Shape[] rounds = new Shape[]
-        {
-            new Round(5), new Round(7), new Round(3), new Round(4), new Round(6)
-        };
-        Shape[] squares = new Shape[]
-        {
-           new Square(4), new Square(6), new Square(3), new Square(5), new Square(7)
-        };
-        Shape[] triangles = new Shape[]
-        {
-              new Triangle(3, 4, 5), new Triangle(5, 5, 5), new Triangle(4, 4, 3), new Triangle(5, 12, 13), new Triangle(7, 8, 10)
-        };
+        Random random = new Random();
+        int scored = random.Next(0, 5);
+        int conceded = random.Next(0, 5);
+        team1.Result(scored, conceded);
+        team2.Result(conceded, scored);
+    }
 
-
-        SortShapes(rounds);
-        SortShapes(squares);
-        SortShapes(triangles);
-
-        Console.WriteLine("Фигура\t\tПериметр\tПлощадь");
-
-        foreach (var round in rounds)
-        {
-            Info(round);
-        }
-        foreach (var square in squares)
-        {
-            Info(square);
-        }
-        foreach (var triangle in triangles)
-        {
-            Info(triangle);
-        }
-    }   
-    static void SortShapes(Shape[] arr)
+    static void Sort(FootballTeam[] teams)
     {
-       int n = arr.Length;
-        for (int i = 0; i < n - 1; i++)
+        for (int i = 0; i < teams.Length - 1; i++)
         {
-            for (int j = 0; j < n - i - 1; j++)
+            for (int j = 0; j < teams.Length - i - 1; j++)
             {
-                if (arr[j].Area() < arr[j + 1].Area())
+                if (teams[j].Points < teams[j + 1].Points ||
+                   (teams[j].Points == teams[j + 1].Points && teams[j].Difference < teams[j + 1].Difference))
                 {
-                    Shape temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                    FootballTeam temp = teams[j];
+                    teams[j] = teams[j + 1];
+                    teams[j + 1] = temp;
                 }
             }
         }
     }
 }
+
+
+
 
