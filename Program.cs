@@ -1,203 +1,206 @@
 ﻿// See https://aka.ms/new-console-template for more information
-//1.
-class Cross
-{
-    protected string _LastName;
-    protected string _Group;
-    protected int _score;
+//1
+//class Cross
+//{
+//    private string _lastName;
+//    private string _group;
+//    private int _score;
 
-    public Cross(string LastName, string Group, int score)
-    {
-        this._LastName = LastName;
-        this._Group = Group;
-        this._score = score;
-    }
+//    public Cross(string lastName, string group, int score)
+//    {
+//        this._lastName = lastName;
+//        this._group = group;
+//        this._score = score;
+//    }
 
-    public string LastName { get { return this._LastName; } }
-    public string Group { get { return this._Group; } }
-    public int Score { get { return this._score; } }
+//    public string LastName { get { return this._lastName; } }
+//    public string Group { get { return this._group; } }
+//    public int Score { get { return this._score; } }
 
-    public void Print()
-    {
-        Console.WriteLine($"Name: {LastName} Group: {Group} Score: {Score}");
-    }
-}
+//    public void Print()
+//    {
+//        Console.WriteLine($"Name: {LastName} Group: {Group} Score: {Score}");
+//    }
+//}
 
-abstract class Winners
-{
-    public abstract void Winner(Cross[] array);
+//abstract class Winners
+//{
+//    public abstract void Winner(Cross[] array);
 
-    protected void Sort(Cross[] array)
-    {
-        if (array == null || array.Length == 0)
-        {
-            return;
-        }
+//    protected void QuickSort(Cross[] array, int left, int right)
+//    {
+//        if (left < right)
+//        {
+//            int pivot = Partition(array, left, right);
+//            QuickSort(array, left, pivot - 1);
+//            QuickSort(array, pivot + 1, right);
+//        }
+//    }
 
-        for (int j = 0; j < array.Length - 1; j++)
-        {
-            for (int i = 1; i < array.Length; i++)
-            {
-                if (array[i - 1] != null && array[i] != null && array[i - 1].Score < array[i].Score)
-                {
-                    Cross temp = array[i - 1];
-                    array[i - 1] = array[i];
-                    array[i] = temp;
-                }
-            }
-        }
-    }
-}
+//    private int Partition(Cross[] array, int left, int right)
+//    {
+//        Cross pivot = array[right];
+//        int i = left - 1;
 
-class Run100 : Winners
-{
-    public override void Winner(Cross[] array)
-    {
-        if (array == null || array.Length == 0)
-        {
-            return;
-        }
+//        for (int j = left; j < right; j++)
+//        {
+//            if (array[j].Score <= pivot.Score)
+//            {
+//                i++;
+//                Swap(array, i, j);
+//            }
+//        }
 
-        int res = 0;
+//        Swap(array, i + 1, right);
+//        return i + 1;
+//    }
 
-        Sort(array);
+//    private void Swap(Cross[] array, int index1, int index2)
+//    {
+//        Cross temp = array[index1];
+//        array[index1] = array[index2];
+//        array[index2] = temp;
+//    }
+//}
 
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] != null && array[i].Score >= 100)
-            {
-                res = i;
-            }
-        }
+//class Run100 : Winners
+//{
+//    public override void Winner(Cross[] array)
+//    {
+//        if (array == null || array.Length == 0)
+//        {
+//            return;
+//        }
 
-        Console.WriteLine("Race 100 meters");
-        for (int i = 0; i <= res; i++)
-        {
-            Console.Write($"Place: {i + 1}\t\t");
-            array[i].Print();
-        }
-    }
-}
+//        QuickSort(array, 0, array.Length - 1);
 
-class Run500 : Winners
-{
-    public override void Winner(Cross[] array)
-    {
-        if (array == null || array.Length == 0)
-        {
-            return;
-        }
+//        int res = 0;
+//        for (int i = 0; i < array.Length; i++)
+//        {
+//            if (array[i].Score >= 100)
+//            {
+//                res = i;
+//            }
+//        }
 
-        int res = 0;
+//        Console.WriteLine("Race 100 meters");
+//        for (int i = 0; i <= res; i++)
+//        {
+//            Console.Write($"Place: {i + 1}\t\t");
+//            array[i].Print();
+//        }
+//    }
+//}
 
-        Sort(array);
+//class Run500 : Winners
+//{
+//    public override void Winner(Cross[] array)
+//    {
+//        if (array == null || array.Length == 0)
+//        {
+//            return;
+//        }
 
-        for (int i = 0; i < array.Length; i++)
-        {
-            if (array[i] != null && array[i].Score >= 500)
-            {
-                res = i;
-            }
-        }
+//        QuickSort(array, 0, array.Length - 1);
 
-        Console.WriteLine("Race 500 meters");
-        for (int i = 0; i <= res; i++)
-        {
-            Console.Write($"Place: {i + 1}\t\t");
-            array[i].Print();
-        }
-    }
-}
+//        int res = 0;
+//        for (int i = 0; i < array.Length; i++)
+//        {
+//            if (array[i].Score >= 500)
+//            {
+//                res = i;
+//            }
+//        }
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        Cross[] ARRAY = new Cross[3];
-        ARRAY[0] = new Cross("Sidney", "2", 521);
-        ARRAY[1] = new Cross("Rosa", "1", 523);
-        ARRAY[2] = new Cross("Adrian", "3", 128);
+//        Console.WriteLine("Race 500 meters");
+//        for (int i = 0; i <= res; i++)
+//        {
+//            Console.Write($"Place: {i + 1}\t\t");
+//            array[i].Print();
+//        }
+//    }
+//}
 
-        Winners run100 = new Run100();
-        Winners run500 = new Run500();
+//internal class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        Cross[] array = new Cross[3];
+//        array[0] = new Cross("Sidney", "2", 521);
+//        array[1] = new Cross("Rosa", "1", 523);
+//        array[2] = new Cross("Adrian", "3", 128);
 
-        Console.WriteLine("Results:");
+//        Winners run100 = new Run100();
+//        Winners run500 = new Run500();
 
-        run100.Winner(ARRAY);
-        Console.WriteLine();
-        run500.Winner(ARRAY);
-    }
-}
-
-
-
+//        Console.WriteLine("Results:");
+//        run100.Winner(array);
+//        Console.WriteLine();
+//        run500.Winner(array);
+//    }
+//}
 
 
 
 // 2
+//public struct Athlete
+//{
+//    public string Surname { get; }
+//    public double[] Results { get; }
+
+//    public Athlete(string surname, double[] results)
+//    {
+//        Surname = surname;
+//        Results = results;
+
+//    }
+
+//}
 
 //public abstract class Discipline
 //{
-//    protected static string nameOfDiscipline;
+//    public abstract string NameOfDiscipline { get; }
 
-//    private string surname;
-//    private double[] results;
+//    public abstract double GetBestResult(double[] results);
 
-//    public Discipline(string surname, double[] results)
+//    public static void Print(Athlete[] athletes)
 //    {
-//        this.surname = surname;
-//        this.results = results;
-//    }
-
-//    public virtual string NameOfDiscipline
-//    {
-//        get { return nameOfDiscipline; }
-//    }
-
-//    public double GetBestResult()
-//    {
-//        double bestResult = results[0];
-//        for (int i = 1; i < results.Length; i++)
+//        Console.WriteLine("Table of results:");
+//        foreach (var athlete in athletes)
 //        {
-//            if (results[i] > bestResult)
-//            {
-//                bestResult = results[i];
-//            }
-//        }
-//        return bestResult;
-//    }
-
-//    public static void Print(Discipline[] results)
-//    {
-//        for (int i = 0; i < results.Length; i++)
-//        {
-//            Console.WriteLine($"Surname: {results[i].surname}");
-//            Console.WriteLine($"Best result: {results[i].GetBestResult()}");
+//            Console.WriteLine($"Surname: {athlete.Surname}");
+//            Console.WriteLine($"Best result: {athlete.Results.Max()}");
 //        }
 //    }
 //}
 
 //public class HighJump : Discipline
 //{
-//    public HighJump(string surname, double[] results) : base(surname, results)
-//    {
-//    }
+//    public HighJump() { }
 
-//    public static new string NameOfDiscipline
+//    public override string NameOfDiscipline
 //    {
 //        get { return "\nHigh Jump"; }
+//    }
+
+//    public override double GetBestResult(double[] results)
+//    {
+//        return results.Max();
 //    }
 //}
 
 //public class LongJump : Discipline
 //{
-//    public LongJump(string surname, double[] results) : base(surname, results)
-//    {
-//    }
+//    public LongJump() { }
 
-//    public static new string NameOfDiscipline
+//    public override string NameOfDiscipline
 //    {
 //        get { return "\nLong Jump"; }
+//    }
+
+//    public override double GetBestResult(double[] results)
+//    {
+//        return results.Max();
 //    }
 //}
 
@@ -205,25 +208,26 @@ internal class Program
 //{
 //    public static void Main()
 //    {
-//        LongJump[] jumpResults1 = {
-//            new LongJump("Ivanov", new double[] { 3.2, 2.9, 3.1 }),
-//            new LongJump("Petrov", new double[] { 2.8, 2.0, 3.2 }),
-//            new LongJump("Sidorov", new double[] { 3.7, 3.0, 2.3 })
+//        Athlete[] longJumpResults = {
+//            new Athlete("Ivanov", new double[] { 3.2, 2.9, 3.1 }),
+//            new Athlete("Petrov", new double[] { 2.8, 2.0, 3.2 }),
+//            new Athlete("Sidorov", new double[] { 3.7, 3.0, 2.3 })
 //        };
 
-//        HighJump[] jumpResults2 = {
-//            new HighJump("Malinkin", new double[] { 5.6, 5.9, 6.1 }),
-//            new HighJump("Lazarev", new double[] { 5.8, 6.0, 6.2 }),
-//            new HighJump("Perov", new double[] { 5.7, 6.0, 6.3 })
+//        Athlete[] highJumpResults = {
+//            new Athlete("Malinkin", new double[] { 5.6, 5.9, 6.1 }),
+//            new Athlete("Lazarev", new double[] { 5.8, 6.0, 6.2 }),
+//            new Athlete("Perov", new double[] { 5.7, 6.0, 6.3 })
 //        };
 
 //        Console.WriteLine("Table of results:");
-//        Console.WriteLine(LongJump.NameOfDiscipline);
-//        Discipline.Print(jumpResults1);
-//        Console.WriteLine(HighJump.NameOfDiscipline);
-//        Discipline.Print(jumpResults2);
+//        Console.WriteLine(new LongJump().NameOfDiscipline);
+//        Discipline.Print(longJumpResults);
+//        Console.WriteLine(new HighJump().NameOfDiscipline);
+//        Discipline.Print(highJumpResults);
 //    }
 //}
+
 
 
 
