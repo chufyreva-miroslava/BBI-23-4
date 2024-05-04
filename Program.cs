@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
+using System.Text;
 
 
 public abstract class Task
@@ -54,19 +55,11 @@ public class Task8 : Task
                     }
 
                     currentStr = text.Substring(index, indexSpace - index);
-                    //Добавляем пробелы есть строка меньше 50 символов
-                    if (currentStr.Length != 50)
-                    {
-                        int spaceCount = 50 - currentStr.Length;
-                        currentStr += new string(' ', spaceCount);
-                    }
 
                     index = indexSpace + 1;
 
                     processedText += currentStr + "\n";
-
                 }
-
             }
             else
             {
@@ -79,8 +72,48 @@ public class Task8 : Task
                 processedText += currentStr + "\n";
                 index += 50;
             }
+
         }
+
+        FormattingTextByWidth();
     }
+
+    private void FormattingTextByWidth()
+    {
+        string[] lines = processedText.Split('\n'); //в аждой ячеку массива хранится строка
+
+        string result = ""; //итоговый текст
+
+        foreach (string line in lines)
+        {
+            string[] words = line.TrimEnd().Split();//удаляем все лишние пробелы в конце строки
+            int totalWordLength = words.Sum(word => word.Length);// длина слов в строке
+            int totalSpacesToAdd = 50 - totalWordLength;
+            int spaceBetweenWord; //кол-во пробелов между словами, которое требуется для выравнивания по ширине
+            if (words.Length > 1) spaceBetweenWord = totalSpacesToAdd / (words.Length - 1);
+            else spaceBetweenWord = 0;
+
+            int allSpaces; // кол-во пробелов, которое не хватает между словами для выравнивания по ширине
+            if (words.Length > 1) allSpaces = totalSpacesToAdd % (words.Length - 1);
+            else allSpaces = 0;
+
+            StringBuilder formattedLine = new StringBuilder(); //переменная для хранения отформатированной строки по ширине
+
+            for (int i = 0; i < words.Length - 1; i++) //добавление необхлдимых пробелов
+            {
+                formattedLine.Append(words[i]);
+                formattedLine.Append(' ', spaceBetweenWord + (allSpaces > 0 ? 1 : 0));
+                allSpaces = Math.Max(0, allSpaces - 1);
+            }
+
+            formattedLine.Append(words[words.Length - 1]);
+            result += formattedLine.ToString() + "\n";
+
+        }
+        processedText = result;
+
+    }
+
 
     public override string ToString()
     {
